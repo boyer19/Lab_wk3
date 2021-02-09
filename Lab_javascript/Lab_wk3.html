@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Club Membership</title>
+
+  <style>
+      
+      .selected {
+        text-decoration: line-through ;
+        font-style: italic;
+        color: gray;
+      }
+
+      input {
+          width: 100%;
+          padding: 5px;
+          margin: 5px 5px 5px 0px;
+          box-sizing: border-box;
+
+      }
+
+  </style>
+
+</head>
+<body>
+
+    <h1>Student Club Roster</h1>
+
+    <h2>Add Students</h2>
+
+    <label for="student-name">Student Name</label><input id="student-name" name="student-name">
+    <br>
+    <label for="student-id">Student ID</label><input id="student-id" name="student-id">
+    <br>
+    <label for="student-gpa">Student GPA</label><input id="student-gpa" name="student-gpa" type="number">
+    <br>
+    <button id="add-student">Add Student</button>    
+
+    <h2>Student List</h2>
+
+    <p>There are 
+        <span id="student-count">
+          <!-- use JavaScript to count the number of students, and show here -->
+        </span> 
+    student(s) in the club.</p>
+
+    <p id="error-message"></p>
+    
+
+    <ul id="student-list">
+        <!-- use JavaScript to create li elements  -->
+    </ul>
+
+    <button id="remove-selected-students">Remove selected students</button>
+
+<script>
+
+    // Add the following functionality to this page
+   // When the page loads
+    let nameInput = document.querySelector('#student-name')
+    let idInput = document.querySelector('#student-id')
+    let addButton = document.querySelector('#add-student')
+    let textList = document.querySelector('#student-list')
+    let clearButton = document.querySelector('#remove-selected-students')
+    let errorMessage = document.querySelector('#error-message')
+     //   - Using JavaScript, display 0 in span#student-count
+    
+    let message = document.querySelector('#student-count') 
+
+    let elementsInList = 0      // Starts for count list elements
+    let maxElements = 10        // Sets the maximum amount of list items
+    let studentCount = 0  
+    document.addEventListener('keyup', function() {
+        
+        if (event.keyCode == 13) {
+            addButton.click()               // Allows user to use the 'Enter' key to Add to list
+        }
+    })
+
+        if (studentCount == 0) {
+                message.innerHTML = ` ${studentCount}`
+        } else {
+                message.innerHTML = ` ${studentCount}`  
+            }
+       
+
+    addButton.addEventListener('click', function() {
+        
+        // read the text in the input
+        let newText = nameInput.value
+
+        if (newText.length == 0) {              // Validation user has typed in some text
+            alert('Enter some text')
+            return
+        } else  if (newText.length >=50) {              // Validation user has typed less than 50 characters
+            alert('Only 50 charatcters are allowed')
+            return
+        }
+
+        if (elementsInList >= maxElements) {            // Displays a message if list elements exceed maxElements
+            alert('No more elements can be added')
+            return
+        }
+        
+        // create a new li element
+        let newListItem = document.createElement('li')
+        // the li element text should be the text from the input
+        newListItem.innerHTML = newText
+        // add the new li element as a child of the ul element
+        textList.appendChild(newListItem)
+        // clear the text in the input 
+        nameInput.value = ''
+        
+        elementsInList++
+        
+    })
+
+    clearButton.addEventListener('click', function() {
+        textList.innerHTML = ''
+        elementsInList = 0
+    })
+    //When button#add-students is clicked
+      //  - Read the value from the student-name input
+
+        //- Read the value from the student-id input
+        //- Read the value from the student-gpa input
+        //- Create a new li element
+        //- Set the new li element innerHTML to a string containing the student's name, id, and GPA
+         //   - for example "Beyonce Knowles, id: aa1234bb, GPA: 3.8"
+           // - Use a template string  
+        //- Add a click event handler to each li element. 
+          //  When a li element is clicked, add the class="selected" to that li element.
+            //When a li element is clicked again, remove the class="selected" from that li element
+        //- Add the new li element to ul#student-list element 
+        //- Update the span#student-count value to the new number of students
+    //When button#remove-selected-students is clicked, 
+      //  - remove all of the elements with the class="selected" from the list.
+        
+    
+      
+        
+                
+</script>
+
+</body>
+</html>

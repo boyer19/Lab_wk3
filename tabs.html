@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Comments go in these -->
+    <head>
+        <meta charset="UTF-8">
+        <title>Tabbed Content</title>
+        <link rel="stylesheet" type="text/css" href="tabs_style.css">
+    </head>
+    <body>
+        <!-- Write your HTML content here -->
+        
+	<h1>Favorite Foods</h1>
+    <div id="tabs">
+        <button data-content-id="pizza" class="tab-button">Pizza</button>
+        <button data-content-id="cheesecake" class="tab-button">Cheesecake</button>
+        <button data-content-id="sushi" class="tab-button">Sushi</button>
+    </div>
+
+    <div id="pizza" class="tab-content">Pizza is awesome</div>
+    <div id="cheesecake" class="tab-content">Cheesecake is delicious</div>
+    <div id="sushi" class="tab-content">Sushi is amazing</div>
+    <script>
+        // Write your script here
+        //hiding the contents
+        let buttons = document.querySelectorAll('.tab-button')
+        let tabContents = document.querySelectorAll('.tab-content')
+
+        tabContents.forEach( function(divEl) {
+            divEl.style.display = 'none'
+        })
+
+        tabContents[0].style.display ='block' // show first tab
+        buttons[0].classList.add('active')
+
+        buttons.forEach( function(button) {
+            button.addEventListener('click', function() {
+                // hide all content
+                tabContents.forEach( function(divEl) {
+                    divEl.style.display = 'none'
+                })
+
+                buttons.forEach( function(button) {
+                    button.classList.remove('active')
+                })
+
+                this.classList.add('active')
+                // show the div with content that relates to the button that was clicked
+                let contentId = this.getAttribute('data-content-id')  // This is the element that generated the event
+                let tabContent = document.querySelector('#' + contentId) // example #pizza
+                tabContent.style.display = 'block'
+
+            })
+        })
+
+    </script>
+    </body>
+
+</html>

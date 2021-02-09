@@ -1,0 +1,15 @@
+h1 {
+    font-family: 'Alfa Slab One', cursive;
+    text-align: center;
+}
+body {
+    background-color: aqua;
+    text-align: center;
+    font-family: 'Alfa Slab One', cursive;
+    margin: 40px;
+}
+
+li {
+    text-align: left;
+}
+
